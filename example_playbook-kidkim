@@ -10,6 +10,6 @@
       username: "{{ucs_username}}"
       password: "{{ucs_password}}"
       state: "{{ucs_state}}"
-      name: exjun
+      name: kidkim
       id: '57'
       native: 'no'
