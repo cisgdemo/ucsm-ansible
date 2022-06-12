@@ -32,11 +32,11 @@
         subnet_mask: 255.255.255.128
         default_gw: 192.168.10.2
         
-   - name: Configure UUID address pool
-     ucs_uuid_pool:
-       name: UUID-ansible
-       order: sequential
-       first_uuid: 0000-000000000001
-       last_uuid: 0000-000000000078
+  - name: Configure UUID address pool
+    ucs_uuid_pool:
+      name: UUID-ansible
+      order: sequential
+      first_uuid: 0000-000000000001
+      last_uuid: 0000-000000000078
     
       
