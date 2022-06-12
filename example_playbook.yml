@@ -42,6 +42,10 @@
           last_addr: 192.168.10.20
           subnet_mask: 255.255.255.128
           default_gw: 192.168.10.2
+        ipv6_blocks:
+        - ipv6_first_addr: fe80::1cae:7992:d7a1:ed07
+          ipv6_last_addr: fe80::1cae:7992:d7a1:edfe
+          ipv6_default_gw: fe80::1cae:7992:d7a1:ecff
         
     - name: Configure UUID address pool
       ucs_uuid_pool:
