@@ -10,6 +10,33 @@
       username: "{{ucs_username}}"
       password: "{{ucs_password}}"
       state: "{{ucs_state}}"
-      name: cisg-demo-vlan
+      name: vlan-ansible
       id: '5'
       native: 'no'
+    
+  - name: Configure MAC address pool
+    isco.ucs.ucs_mac_pool:
+      name: mac-ansible
+      org_dn: org-root
+      first_addr: 00:25:B5:00:66:00
+      last_addr: 00:25:B5:00:67:F3
+      order: sequential
+  
+  - name: Configure IPv4 address pool
+    cisco.ucs.ucs_ip_pool:
+      name: ippool-ansible
+      org_dn: org-root
+      ipv4_blocks:
+      - first_addr: 192.168.10.1
+        last_addr: 192.168.10.20
+        subnet_mask: 255.255.255.128
+        default_gw: 192.168.10.2
+        
+   - name: Configure UUID address pool
+     cisco.ucs.ucs_uuid_pool:
+       name: UUID-ansible
+       order: sequential
+       first_uuid: 0000-000000000001
+       last_uuid: 0000-000000000078
+    
+      
