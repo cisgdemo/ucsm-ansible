@@ -15,7 +15,7 @@
       native: 'no'
     
   - name: Configure MAC address pool
-    isco.ucs.ucs_mac_pool:
+    cisco.ucs.ucs_mac_pool:
       name: mac-ansible
       org_dn: org-root
       first_addr: 00:25:B5:00:66:00
