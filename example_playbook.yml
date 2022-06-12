@@ -6,6 +6,9 @@
   
   tasks:
     - name: UCS Connection Information vars
+      fail:
+        msg: 'Please define the following variables: ucs_hostname, ucs_username and ucs_password.'
+      when: ucs_hostname is not defined or ucs_username is not defined or ucs_password is not defined
       vars:
         hostname: "{{ucs_hostname}}"
         username: "{{ucs_username}}"
