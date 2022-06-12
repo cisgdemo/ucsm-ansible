@@ -15,7 +15,7 @@
       native: 'no'
     
   - name: Configure MAC address pool
-    cisco.ucs.ucs_mac_pool:
+    ucs_mac_pool:
       name: mac-ansible
       org_dn: org-root
       first_addr: 00:25:B5:00:66:00
@@ -23,7 +23,7 @@
       order: sequential
   
   - name: Configure IPv4 address pool
-    cisco.ucs.ucs_ip_pool:
+    ucs_ip_pool:
       name: ippool-ansible
       org_dn: org-root
       ipv4_blocks:
@@ -33,7 +33,7 @@
         default_gw: 192.168.10.2
         
    - name: Configure UUID address pool
-     cisco.ucs.ucs_uuid_pool:
+     ucs_uuid_pool:
        name: UUID-ansible
        order: sequential
        first_uuid: 0000-000000000001
