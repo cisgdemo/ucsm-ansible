@@ -10,12 +10,14 @@
         msg: 'Please define the following variables: ucs_hostname, ucs_username and ucs_password.'
       when: ucs_hostname is not defined or ucs_username is not defined or ucs_password is not defined
       vars:
+      login_info: &login_info
         hostname: "{{ucs_hostname}}"
         username: "{{ucs_username}}"
         password: "{{ucs_password}}"
   
     - name: Configure VLAN
       ucs_vlans:
+        <<: *login_info
         state: "{{ucs_state}}"
         name: vlan-ansible
         id: '5'
@@ -23,6 +25,7 @@
     
     - name: Configure MAC address pool
       ucs_mac_pool:
+        <<: *login_info
         name: mac-ansible
         org_dn: org-root
         first_addr: 00:25:B5:00:66:00
@@ -31,6 +34,7 @@
   
     - name: Configure IPv4 address pool
       ucs_ip_pool:
+        <<: *login_info
         name: ippool-ansible
         org_dn: org-root
         ipv4_blocks:
@@ -41,6 +45,7 @@
         
     - name: Configure UUID address pool
       ucs_uuid_pool:
+        <<: *login_info
         name: UUID-ansible
         order: sequential
         first_uuid: 0000-000000000001
