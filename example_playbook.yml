@@ -4,42 +4,42 @@
   connection: local
   gather_facts: no
   tasks:
-  - name: UCS Connection Information vars
-    vars:
-      hostname: "{{ucs_hostname}}"
-      username: "{{ucs_username}}"
-      password: "{{ucs_password}}"
+   - name: UCS Connection Information vars
+     vars:
+       hostname: "{{ucs_hostname}}"
+       username: "{{ucs_username}}"
+       password: "{{ucs_password}}"
   
-  - name: Configure VLAN
-    ucs_vlans:
-      state: "{{ucs_state}}"
-      name: vlan-ansible
-      id: '5'
-      native: 'no'
+   - name: Configure VLAN
+     ucs_vlans:
+       state: "{{ucs_state}}"
+       name: vlan-ansible
+       id: '5'
+       native: 'no'
     
-  - name: Configure MAC address pool
-    ucs_mac_pool:
-      name: mac-ansible
-      org_dn: org-root
-      first_addr: 00:25:B5:00:66:00
-      last_addr: 00:25:B5:00:67:F3
-      order: sequential
+   - name: Configure MAC address pool
+     ucs_mac_pool:
+       name: mac-ansible
+       org_dn: org-root
+       first_addr: 00:25:B5:00:66:00
+       last_addr: 00:25:B5:00:67:F3
+       order: sequential
   
-  - name: Configure IPv4 address pool
-    ucs_ip_pool:
-      name: ippool-ansible
-      org_dn: org-root
-      ipv4_blocks:
-      - first_addr: 192.168.10.1
-        last_addr: 192.168.10.20
-        subnet_mask: 255.255.255.128
-        default_gw: 192.168.10.2
+   - name: Configure IPv4 address pool
+     ucs_ip_pool:
+       name: ippool-ansible
+       org_dn: org-root
+       ipv4_blocks:
+       - first_addr: 192.168.10.1
+         last_addr: 192.168.10.20
+         subnet_mask: 255.255.255.128
+         default_gw: 192.168.10.2
         
-  - name: Configure UUID address pool
-    ucs_uuid_pool:
-      name: UUID-ansible
-      order: sequential
-      first_uuid: 0000-000000000001
-      last_uuid: 0000-000000000078
+   - name: Configure UUID address pool
+     ucs_uuid_pool:
+       name: UUID-ansible
+       order: sequential
+       first_uuid: 0000-000000000001
+       last_uuid: 0000-000000000078
     
       
