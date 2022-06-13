@@ -42,6 +42,13 @@
         subnet_mask: 255.255.255.128
         default_gw: 192.168.10.2
         primary_dns: 64.104.76.247
+ 
+    - name: Configure NTP server
+      ucs_ntp_server:
+        <<: *login_info
+        ntp_server: 10.10.10.10
+        description: Internal NTP Server by IP address
+        state: present
         
     - name: Configure UUID address pool
       ucs_uuid_pool:
@@ -50,5 +57,17 @@
         order: sequential
         first_uuid: 0000-000000000001
         last_uuid: 0000-000000000078
+        
+    - name: Configure VSAN
+      ucs_vsans:
+        <<: *login_info
+        name: vsan110
+        vsan_id: '110'
     
-      
+    - name: Configure WWNN policy
+      ucs_wwn_pool:
+        <<: *login_info
+        name: WWNN-ansible
+        purpose: node
+        first_addr: 20:00:00:25:B5:48:00:00
+        last_addr: 20:00:00:25:B5:48:00:0F
