@@ -1,0 +1,34 @@
+---
+# Example Playbook: VLAN configuration using the [ucs] hosts group
+- hosts: ucs1
+  connection: local
+  gather_facts: false
+  
+  tasks:
+    - name: UCS Connection Information vars
+      fail:
+        msg: 'Please define the following variables: ucs_hostname, ucs_username and ucs_password.'
+      when: ucs_hostname is not defined or ucs_username is not defined or ucs_password is not defined
+      vars:
+       login_info: &login_info
+         hostname: "{{ucs_hostname}}"
+         username: "{{ucs_username}}"
+         password: "{{ucs_password}}"
+         
+    - name: Configure Service Profile Template with LAN/SAN Connectivity and all other options defaulted
+      ucs_service_profile_template:
+        <<: *login_info
+        name: jaheo-ansible-prf
+        template_type: updating-template
+        uuid_pool: UUID-ansible
+        #storage_profile: DEE-StgProf
+        lan_connectivity_policy: Cntr-FC-Boot
+        #iqn_pool: iSCSI-Boot-A
+        #san_connectivity_policy: Cntr-FC-Boot
+        vmedia_policy: jaheo-vmedia-pol
+        boot_policy: jaheo-boot-pol
+        maintenance_policy: default
+        server_pool: test-jaheo
+        host_firmware_package: default
+        #bios_policy: Docker
+  
