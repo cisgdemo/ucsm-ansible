@@ -62,7 +62,7 @@
       ucs_vsans:
         <<: *login_info
         name: vsan110
-        vsan_id: '110'
+        vsan_id: '1100'
     
     - name: Configure WWNN policy
       ucs_wwn_pool:
