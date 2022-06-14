@@ -38,5 +38,16 @@
     - name: Configure Service Profile from Template
       ucs_service_profile_from_template:
         <<: *login_info
-        name: ansible-prf
+        name: ansible-prf-jaheo
         source_template: ansible-prf
+
+
+    - name: Change Service Profile Association to server pool Container-Pool and restrict migration
+      ucs_service_profile_association:
+        <<: *login_info
+        service_profile_name: ansible-prf-jaheo
+        server_assignment: pool
+        server_pool_name: Server-10
+        restrict_migration: 'yes'
+        
+        
