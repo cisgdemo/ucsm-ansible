@@ -25,6 +25,7 @@
         #lan_connectivity_policy: Cntr-FC-Boot
         #iqn_pool: iSCSI-Boot-A
         #san_connectivity_policy: Cntr-FC-Boot
+        mgmt_inband_pool_name: ip-pool-jaheo-test
         vmedia_policy: jaheo-vmedia-pol
         boot_policy: jaheo-boot-pol
         maintenance_policy: default
