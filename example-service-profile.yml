@@ -18,18 +18,25 @@
     - name: Configure Service Profile Template with LAN/SAN Connectivity and all other options defaulted
       ucs_service_profile_template:
         <<: *login_info
-        name: jaheo-ansible-prf
+        name: ansible-prf
         template_type: updating-template
         uuid_pool: UUID-ansible
         #storage_profile: DEE-StgProf
         #lan_connectivity_policy: Cntr-FC-Boot
         #iqn_pool: iSCSI-Boot-A
         #san_connectivity_policy: Cntr-FC-Boot
+        mgmt_ip_pool: 10.70.138.50-54
         mgmt_inband_pool_name: ip-pool-jaheo-test
         vmedia_policy: jaheo-vmedia-pol
         boot_policy: jaheo-boot-pol
         maintenance_policy: default
-        server_pool: test-jaheo
+        server_pool: Server-10
         host_firmware_package: default
         #bios_policy: Docker
   
+  
+    - name: Configure Service Profile from Template
+      ucs_service_profile_from_template:
+        <<: *login_info
+        name: ansible-prf
+        source_template: ansible-prf
