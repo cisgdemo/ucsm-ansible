@@ -14,13 +14,21 @@
          hostname: "{{ucs_hostname}}"
          username: "{{ucs_username}}"
          password: "{{ucs_password}}"
-  
+         
+    - name: Import CSV
+      community.general.read_csv:
+        path: excel-csv.csv
+        register: excel
+        delegate_to: localhost
+
     - name: Configure VLAN
       ucs_vlans:
+      loop: '{{excel.list}}'
+      vars:
         <<: *login_info
-        state: "{{ucs_state}}"
-        name: vlan-ansible
-        id: '5'
+        state: present
+        name: '{{item.name}}'
+        id: '{{item.vlan}}'
         native: 'no'
     
     - name: Configure MAC address pool
