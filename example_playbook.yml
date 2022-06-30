@@ -16,7 +16,7 @@
          password: "{{ucs_password}}"
          
     - name: Import CSV
-      community.general.read_csv:
+      read_csv:
         path: excel-csv.csv
         register: excel
         delegate_to: localhost
